@@ -1,26 +1,39 @@
 $(document).ready(function(){
-    alertify.logPosition("bottom right");
-    $('.form-list').hide();
-   
+    
+
+   //---Slides Personas
+   alertify.logPosition("bottom right");
+    $('.listaCont').hide();
     $('.form-registrar').click(function(){
-      $('.form-cont').slideDown(500);
-      $('.form-list').slideUp();
+      $('.formularioCont').slideDown(500);
+      $('.listaCont').slideUp();
     });
     
     $('.form-listado').click(function(){
-      $('.form-cont').slideUp();
-      $('.form-list').slideDown(500);
+      $('.formularioCont').slideUp();
+      $('.listaCont').slideDown(500);
     });
+    //---Fin Slide Personas
     
-        
-    $('#llamar-modal').click(function(){
-       $('#form-Modal').modal('show');
-    });
-    
-    $('#registrar').click(function(){
-      alert('Registro');
-    });
 
+    //---Slides usuarios
+    alertify.logPosition("bottom right");
+    $('.listContUser').hide();
+
+    $('.form-listadoP').click(function(){
+      $('.listContPers').slideDown(500);
+      $('.listContUser').slideUp();
+    });
+    
+    $('.form-listadoU').click(function(){
+      $('.listContPers').slideUp();
+      $('.listContUser').slideDown(500);
+    });
+    //---fin slides usuarios
+        
+    
+    
+   
         
     $('#cedula').bind({
         keypress: function(tecla) {

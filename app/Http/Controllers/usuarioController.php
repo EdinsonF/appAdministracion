@@ -5,11 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Persona;
 use App\User;
-use Session;
 
-class personaController extends Controller
+class usuarioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,16 +16,16 @@ class personaController extends Controller
      */
     public function index(Request $request)
     {
-        $personas=persona::paginate(3);
-        $usuarios = User::obtenerRegistrosAll();
+       $usuarios = User::obtenerRegistrosAll();
+       //$usuarios = User::paginate(3);
+
         if($request->ajax()){
 
-            return response()->json(array ('vista'=>view('Admin.Slides.listPersonaPaginate',['personas' => $personas])->render(), 'personas' =>$personas));
+            return response()->json(array ('vista'=>view('Admin.Slides.listUsuariosPaginate',['usuarios' => $usuarios])->render(), 'usuarios' =>$usuarios));
 
         }
         
-
-        return view('Admin.Persona.persona',['personas' => $personas, 'usuarios'=>$usuarios]);
+        //return view('Admin.Slides.listaUsuarios',['usuarios' => $usuarios]);
     }
 
     /**
@@ -37,7 +35,7 @@ class personaController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -50,17 +48,15 @@ class personaController extends Controller
     {
         if($request->ajax())
         {
-            Persona::create($request->all());
+            $rg=User::create($request->all());
             return response()->json([
-                "mensaje"=>"Creado"
+                "mensaje"=>"bien"
                 ]);
         }
- 
-        
+
     }
-
-
     
+
     /**
      * Display the specified resource.
      *
@@ -69,9 +65,8 @@ class personaController extends Controller
      */
     public function show($id)
     {
-
+        //
     }
-
 
     /**
      * Show the form for editing the specified resource.
@@ -81,10 +76,10 @@ class personaController extends Controller
      */
     public function edit($id)
     {
-        $persona=Persona::find($id);
+        $usuarios=User::find($id);
         return response()->json(
-            $persona->toArray()
-        );
+            $usuarios->toArray()
+            );
     }
 
     /**
@@ -96,14 +91,12 @@ class personaController extends Controller
      */
     public function update(Request $request, $id)
     {
-       
-            $persona=Persona::find($id);
-            $persona->fill($request->all());
-            $persona->save();
-            return response()->json([
+        $usuario=User::find($id);
+        $usuario->fill($request->all());
+        $usuario->save();
+        return response()->json([
             "mensaje"=>"listo"
             ]);
-        
     }
 
     /**

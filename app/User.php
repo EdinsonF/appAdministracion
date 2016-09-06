@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
+use DB;
 class User extends Authenticatable
 {
     /**
@@ -12,7 +12,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'id_persona', 'email', 'password',
     ];
 
     /**
@@ -23,4 +23,24 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+    public static function obtenerRegistrosAll(){
+        $registros = DB::table('users')->join('persona','persona.id','=','users.id_persona')
+                                  ->select('persona.nombre', 'persona.apellido', 'users.id','users.email', 'users.password')
+                                  ->paginate(3);
+        
+        return $registros;
+    }
+
+
+    public function setPasswordAttribute($valor)
+    {
+        if(!empty($valor)){
+
+            $this->attributes['password']=\Hash::make($valor);
+
+        }
+
+    }
 }

@@ -11,7 +11,9 @@
 |
 */
 
-Route::get('/','HomeController@index');
-Route::get('admin','AdminController@index');
+Route::get('/','inicioController@index');
+Route::get('admin','adminController@index');
 
+//Route::post('persona/usuario','personaController@RegistrarUsuario');
 Route::resource('persona','personaController');
+Route::resource('usuario','usuarioController');

@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class AdminController extends Controller
+class adminController extends Controller
 {
     public function index(){
-    	return view('Admin.adminHome');
+    	return view('Admin.adminInicio');
     }
 }

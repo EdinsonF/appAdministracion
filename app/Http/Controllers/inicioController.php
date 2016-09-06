@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class HomeController extends Controller
+class inicioController extends Controller
 {
     public function index(){
-    	return view('Home.index');
+    	return view('Inicio.inicioSesion');
     }
 }
