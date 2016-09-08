@@ -12,6 +12,9 @@
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
+
+  <!-- Theme style -->
+
   {{ Html::style('complementos/bootstrap/css/bootstrap.min.css') }}
   {{ Html::style('complementos/dist/css/AdminLTE.min.css') }}
   {{ Html::style('complementos/dist/css/skins/skin-blue.min.css') }}

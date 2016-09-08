@@ -7,11 +7,11 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
-  <link rel="stylesheet" href="{{ url('Complementos/bootstrap/css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="Complementos/bootstrap/css/bootstrap.min.css">
   
-  <link rel="stylesheet" href="{{ url('Complementos/dist/css/AdminLTE.min.css') }}">
+  <link rel="stylesheet" href="Complementos/dist/css/AdminLTE.min.css">
   <!-- iCheck -->
-  <link rel="stylesheet" href="{{ url('Complementos/plugins/iCheck/square/blue.css') }}">
+  <link rel="stylesheet" href="Complementos/plugins/iCheck/square/blue.css">
 
 </head>
 
