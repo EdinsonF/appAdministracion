@@ -46,13 +46,17 @@
                         <a href="{{ url('/usuario/perfil') }}" >
                             <img src="{{ url('complementos/dist/img/LogoUser.png') }}" class="user-image" alt="User Image">
                             <!-- Imagen -->
-                            <span class="hidden-xs">Nombre</span>
+                            <span class="hidden-xs">
+                              @if(isset(Auth::user()->fullName))
+                              {!! Auth::user()->fullName !!}
+                              @endif
+                            </span>
                             <!-- Nombre -->
                         </a>
                     </li>
                     <!-- Control Sidebar Toggle Button -->
                     <li>
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <a href="{{ url('/logout') }}" >
                             <i class="fa fa-power-off"></i>
                         </a>
                     </li>

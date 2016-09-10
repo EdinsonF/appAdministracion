@@ -13,7 +13,9 @@
 
 Route::get('/','inicioController@index');
 Route::get('admin','adminController@index');
+Route::get('/logout','loginController@logout');
 
 //Route::post('persona/usuario','personaController@RegistrarUsuario');
+Route::resource('login','loginController');
 Route::resource('persona','personaController');
 Route::resource('usuario','usuarioController');

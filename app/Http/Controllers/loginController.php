@@ -3,31 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
-use App\Persona;
-use App\User;
+use Auth;
 use Session;
+use Redirect;
+use App\Http\Requests;
+use App\Http\Requests\loginRequest;
 
-class personaController extends Controller
+class loginController extends Controller
 {
-    public function __construct()
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
     {
-        $this->middleware('auth');
-        
-    }
-    public function index(Request $request)
-    {
-        $personas=persona::paginate(3);
-        $usuarios = User::obtenerRegistrosAll();
-        if($request->ajax()){
-
-            return response()->json(array ('vista'=>view('Admin.Slides.listPersonaPaginate',['personas' => $personas])->render(), 'personas' =>$personas));
-
-        }
-        
-
-        return view('Admin.Persona.persona',['personas' => $personas, 'usuarios'=>$usuarios]);
+        return view('Login.inicioSesion');
     }
 
     /**
@@ -37,7 +28,7 @@ class personaController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -46,21 +37,17 @@ class personaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(loginRequest $request)
     {
-        if($request->ajax())
+        if(Auth::Attempt(['email'=>$request['email'], 'password'=>$request['password']]))
         {
-            Persona::create($request->all());
-            return response()->json([
-                "mensaje"=>"Creado"
-                ]);
+            return Redirect('/admin');
         }
- 
+        Session::flash('mensaje-error', 'Usuario y/ó Contraseña Incorrectos');
+        return redirect('/login');
         
     }
 
-
-    
     /**
      * Display the specified resource.
      *
@@ -69,7 +56,13 @@ class personaController extends Controller
      */
     public function show($id)
     {
+        //
+    }
 
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/');
     }
 
 
@@ -81,10 +74,7 @@ class personaController extends Controller
      */
     public function edit($id)
     {
-        $persona=Persona::find($id);
-        return response()->json(
-            $persona->toArray()
-        );
+        //
     }
 
     /**
@@ -96,14 +86,7 @@ class personaController extends Controller
      */
     public function update(Request $request, $id)
     {
-       
-            $persona=Persona::find($id);
-            $persona->fill($request->all());
-            $persona->save();
-            return response()->json([
-            "mensaje"=>"listo"
-            ]);
-        
+        //
     }
 
     /**

@@ -34,6 +34,16 @@ class User extends Authenticatable
     }
 
 
+    public function getFullNameAttribute(){
+
+        $registros = \DB::table('users')->join('persona','persona.id','=','users.id_persona' )->where( 'users.email',$this->email)
+                                  ->select(DB::raw("CONCAT(persona.nombre, ' ', persona.apellido) as fullname"))
+                                  ->value('fullname');
+
+        return $registros;
+    }
+
+
     public function setPasswordAttribute($valor)
     {
         if(!empty($valor)){

@@ -9,6 +9,6 @@ use App\Http\Requests;
 class inicioController extends Controller
 {
     public function index(){
-    	return view('Inicio.inicioSesion');
+    	return view('Inicio.index');
     }
 }
